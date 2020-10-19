@@ -34,11 +34,9 @@ public class AlunoServiceImpl implements AlunoService {
 
     @Override
     public AlunoDTO findById(Long id) {
-
-        return alunoDTOList.stream().filter(alunoDTO -> alunoDTO.getId().equals(id) && alunoDTO.getAtivo()).findFirst()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Aluno aluno = getAlunoById(id);
+        return new AlunoDTO(aluno);
     }
-
     @Override
     public AlunoDTO create(AlunoCreateUpdateDTO alunoCreateUpdateDTO) {
 
@@ -50,11 +48,22 @@ public class AlunoServiceImpl implements AlunoService {
 
     @Override
     public AlunoDTO update(AlunoCreateUpdateDTO alunoCreateUpdateDTO, Long id) {
-        return null;
+        Aluno aluno = getAlunoById(id);
+        aluno.setNome(alunoCreateUpdateDTO.getNome());
+        aluno.setNumeroCartao(alunoCreateUpdateDTO.getNumeroCartao());
+        Aluno savedAluno = alunoRepository.save(aluno);
+        return new AlunoDTO(savedAluno);
     }
 
     @Override
     public void delete(Long id) {
+        Aluno aluno = getAlunoById(id);
+        aluno.setAtivo(false);
+        alunoRepository.save(aluno);
+    }
 
+    private Aluno getAlunoById(Long id) {
+        return alunoRepository.findByIdAndAtivoIsTrue(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 }
