@@ -1,11 +1,22 @@
 package br.com.fiap.fiapcreditcard.dto;
 
+import br.com.fiap.fiapcreditcard.model.Aluno;
+
 public class AlunoDTO {
 
 	private Long id;
 	private String nome;
 	private String numeroCartao;
 	private Boolean ativo;
+
+	public AlunoDTO(){}
+
+	public AlunoDTO(Aluno aluno) {
+		this.id = aluno.getId();
+		this.nome = aluno.getNome();
+		this.numeroCartao = aluno.getNumeroCartao();
+		this.ativo = aluno.getAtivo();
+	}
 
 	public String getNome() {
 		return nome;
