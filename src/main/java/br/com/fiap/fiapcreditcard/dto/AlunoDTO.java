@@ -2,12 +2,15 @@ package br.com.fiap.fiapcreditcard.dto;
 
 import br.com.fiap.fiapcreditcard.model.Aluno;
 
+import java.util.Date;
+
 public class AlunoDTO {
 
 	private Long id;
 	private String nome;
 	private String numeroCartao;
 	private Boolean ativo;
+	private Date dataCriacao;
 
 	public AlunoDTO(){}
 
@@ -16,6 +19,7 @@ public class AlunoDTO {
 		this.nome = aluno.getNome();
 		this.numeroCartao = aluno.getNumeroCartao();
 		this.ativo = aluno.getAtivo();
+		this.dataCriacao = aluno.getDataCriacao();
 	}
 
 	public String getNome() {
@@ -50,4 +54,11 @@ public class AlunoDTO {
 		this.ativo = ativo;
 	}
 
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
 }

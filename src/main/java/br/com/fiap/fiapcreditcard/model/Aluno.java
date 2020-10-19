@@ -1,10 +1,15 @@
 package br.com.fiap.fiapcreditcard.model;
 
 import br.com.fiap.fiapcreditcard.dto.AlunoCreateUpdateDTO;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "TB_ALUNO")
 public class Aluno {
 
@@ -20,6 +25,15 @@ public class Aluno {
 
     @Column
     private Boolean ativo;
+
+    @Column(name = "data_criacao", nullable = false, updatable = false)
+    @CreatedDate
+    private Date dataCriacao;
+
+    @Column(name = "data_atualizacao")
+    @LastModifiedDate
+    private Date dataAtualizacao;
+
 
     public Aluno() {}
 
@@ -60,5 +74,21 @@ public class Aluno {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Date getDataAtualizacao() {
+        return dataAtualizacao;
+    }
+
+    public void setDataAtualizacao(Date dataAtualizacao) {
+        this.dataAtualizacao = dataAtualizacao;
     }
 }

@@ -26,7 +26,7 @@ public class AlunoServiceImpl implements AlunoService {
     @Override
     public List<AlunoDTO> findAll(String search) {
         String searchTerm = search == null ? "" : search;
-        return alunoRepository.findAllByNomeContainingAndAtivoIsTrue(searchTerm)
+        return alunoRepository.buscaPorNome(searchTerm)
                 .stream()
                 .map(aluno -> new AlunoDTO(aluno))
                 .collect(Collectors.toList());
