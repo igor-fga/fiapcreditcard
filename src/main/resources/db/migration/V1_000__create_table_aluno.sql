@@ -6,5 +6,6 @@ create table tb_aluno
     data_criacao timestamp not null,
     numero_cartao varchar(255),
     nome varchar(255),
+    saldo decimal(19, 2),
     primary key (id)
 )

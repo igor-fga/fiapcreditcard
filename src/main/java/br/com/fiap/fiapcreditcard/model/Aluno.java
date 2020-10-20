@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -15,15 +16,19 @@ public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column
+    @Column(name = "nome")
     private String nome;
 
-    @Column
+    @Column(name = "numero_cartao")
     private String numeroCartao;
 
-    @Column
+    @Column(name = "saldo")
+    private Double saldo;
+
+    @Column(name = "ativo")
     private Boolean ativo;
 
     @Column(name = "data_criacao", nullable = false, updatable = false)
@@ -34,6 +39,9 @@ public class Aluno {
     @LastModifiedDate
     private Date dataAtualizacao;
 
+    @OneToMany(mappedBy="aluno")
+    private List<Transacao> listaTransacoes;
+
 
     public Aluno() {}
 
@@ -41,6 +49,7 @@ public class Aluno {
         this.id = 0L;
         this.nome = alunoCreateUpdateDTO.getNome();
         this.numeroCartao = alunoCreateUpdateDTO.getNumeroCartao();
+        this.saldo = 2000.00;
         this.ativo = true;
     }
 
@@ -90,5 +99,21 @@ public class Aluno {
 
     public void setDataAtualizacao(Date dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public Double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
+    }
+
+    public List<Transacao> getListaTransacoes() {
+        return listaTransacoes;
+    }
+
+    public void setListaTransacoes(List<Transacao> listaTransacoes) {
+        this.listaTransacoes = listaTransacoes;
     }
 }

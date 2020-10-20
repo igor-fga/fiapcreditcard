@@ -9,8 +9,7 @@ public class AlunoDTO {
 	private Long id;
 	private String nome;
 	private String numeroCartao;
-	private Boolean ativo;
-	private Date dataCriacao;
+	private Double saldo;
 
 	public AlunoDTO(){}
 
@@ -18,8 +17,7 @@ public class AlunoDTO {
 		this.id = aluno.getId();
 		this.nome = aluno.getNome();
 		this.numeroCartao = aluno.getNumeroCartao();
-		this.ativo = aluno.getAtivo();
-		this.dataCriacao = aluno.getDataCriacao();
+		this.saldo = aluno.getSaldo();
 	}
 
 	public String getNome() {
@@ -46,19 +44,11 @@ public class AlunoDTO {
 		this.numeroCartao = numeroCartao;
 	}
 
-	public Boolean getAtivo() {
-		return ativo;
+	public Double getSaldo() {
+		return saldo;
 	}
 
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-
-	public Date getDataCriacao() {
-		return dataCriacao;
-	}
-
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
 	}
 }

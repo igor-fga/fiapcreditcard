@@ -19,5 +19,4 @@ public class AlunoCreateUpdateDTO {
 	public void setNumeroCartao(String numeroCartao) {
 		this.numeroCartao = numeroCartao;
 	}
-
 }
