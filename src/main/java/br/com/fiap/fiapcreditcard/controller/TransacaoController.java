@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,11 @@ public class TransacaoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public TransacaoDTO create(@RequestBody TransacaoCreateDTO transacaoCreateDTO) {
-        return transacaoService.create(transacaoCreateDTO);
+        try {
+            return transacaoService.create(transacaoCreateDTO);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
